@@ -1,5 +1,6 @@
 import axios from "axios";
 axios.defaults.headers.common["x-api-key"] = 'live_MwEb6cOBTopHRDyNUjHlWQNDyUgwDVtKpr05DwKMod1smb0DX1YoCVVEOAt89H8u';
+
 import { fetchBreeds, fetchCatByBreed } from './cat-api';
 
 

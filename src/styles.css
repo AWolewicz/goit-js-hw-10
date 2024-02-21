@@ -36,3 +36,8 @@
 .hidden {
     display: none;
 }
+
+.error {
+    background: #ff5549;
+    color: #fff;
+}

@@ -1,22 +1,18 @@
 import axios from "axios";
-
 axios.defaults.headers.common["x-api-key"] = 'live_MwEb6cOBTopHRDyNUjHlWQNDyUgwDVtKpr05DwKMod1smb0DX1YoCVVEOAt89H8u';
-
-
-
-
 import { fetchBreeds, fetchCatByBreed } from './cat-api';
 
 const breedSelect = document.querySelector('.breed-select');
 const catInfo = document.querySelector('.cat-info');
 const loader = document.querySelector('.loader');
+const error = document.querySelector('.error');
 
 try {
   loader.classList.remove('hidden');
   fetchBreeds().then(data => renderSelect(data));
 } catch (error) {
   console.log(error);
-}
+};
 
 function renderSelect(breeds) {
   const markup = breeds
@@ -40,7 +36,7 @@ function renderCat(catData) {
     'beforeend',
     `<div>
         <h2>${name}</h2>
-        <img src="${url}" alt="${name}" />
+        <img src="${url}" alt="${name}"/>
         <p>${description}</p>
         <p><strong>Temperament:</strong> ${temperament}</p>
     </div>`

@@ -1,5 +1,5 @@
-import axios from 'axios';
-import Notiflix from 'notiflix';
+import axios from "axios";
+import Notiflix from "notiflix";
 
 export const fetchBreeds = () => {
   axios.defaults.headers.common['x-api-key'] =

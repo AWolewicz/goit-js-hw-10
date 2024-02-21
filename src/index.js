@@ -2,6 +2,7 @@ import axios from "axios";
 axios.defaults.headers.common["x-api-key"] = 'live_MwEb6cOBTopHRDyNUjHlWQNDyUgwDVtKpr05DwKMod1smb0DX1YoCVVEOAt89H8u';
 import { fetchBreeds, fetchCatByBreed } from './cat-api';
 
+
 const breedSelect = document.querySelector('.breed-select');
 const catInfo = document.querySelector('.cat-info');
 const loader = document.querySelector('.loader');

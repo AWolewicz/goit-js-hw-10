@@ -1,10 +1,38 @@
+:root {
+    --color-light: #eee;
+    --color-dark: #1a1a1a;
+    --color-accent: tomato;
+}
+
+body {
+    background-color: #eee;
+    max-height: 100vh;
+}
+
+.hidden {
+    display: none;
+}
+
+.cat-info {
+    margin: 0 auto;
+    max-width: 300px;
+}
+
+.img {
+    border-radius: 15px;
+    box-shadow: 0 0 10px var(--color-accent);
+    margin: 0 auto;
+    display: block;
+    max-width: 50%;
+}
+
 .loader {
     width: 48px;
     height: 48px;
     border: 3px solid #AAA;
     border-radius: 50%;
     display: inline-block;
-    position: relative;
+    position: absolute;
     box-sizing: border-box;
     animation: rotation 1s linear infinite;
 }

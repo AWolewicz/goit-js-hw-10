@@ -1,41 +1,36 @@
-import axios from "axios";
-axios.defaults.headers.common["x-api-key"] = 'live_MwEb6cOBTopHRDyNUjHlWQNDyUgwDVtKpr05DwKMod1smb0DX1YoCVVEOAt89H8u';
-import Notiflix from "notiflix";
-
-// import { fetchBreeds, fetchCatByBreed } from './cat-api';
-
-const fetchBreeds = () => {
-  axios.defaults.headers.common['x-api-key'] =
-    'live_MwEb6cOBTopHRDyNUjHlWQNDyUgwDVtKpr05DwKMod1smb0DX1YoCVVEOAt89H8u';
-
-  return axios.get(`https://api.thecatapi.com/v1/breeds`)
-    .then(res => res.data)
-    .catch(e => {
-      Notiflix.Notify.failure('Oops! Something went wrong! Try reloading the page!');
-      throw e;
-    });
-};
-
-const fetchCatByBreed = breedId => {
-  return axios
-    .get(`https://api.thecatapi.com/v1/images/search?breed_ids=${breedId}`)
-    .then(res => res.data)
-    .catch(e => {
-      Notiflix.Notify.failure('Oops! Something went wrong! Try reloading the page!');
-      throw e;
-    });
-};
+import Notiflix from 'notiflix';
+import { fetchBreeds, fetchCatByBreed } from './cat-api.js';
 
 const breedSelect = document.querySelector('.breed-select');
 const catInfo = document.querySelector('.cat-info');
 const loader = document.querySelector('.loader');
 
+loader.classList.add('hidden');
+
+ const fetchBreeds = () => {
+   return axios.get(`https://api.thecatapi.com/v1/breeds`)
+     .then(res => res.data)
+     .catch(e => {
+       Notiflix.Notify.failure('Oops! Something went wrong! Try reloading the page!');
+     });
+ };
+
+ const fetchCatByBreed = breedId => {
+   return axios
+     .get(`https://api.thecatapi.com/v1/images/search?breed_ids=${breedId}`)
+     .then(res => res.data)
+     .catch(e => {
+       Notiflix.Notify.failure('Oops! Something went wrong! Try reloading the page!');
+     });
+ };
+
 try {
-  loader.classList.remove('hidden');
   fetchBreeds().then(data => renderSelect(data));
+  loader.classList.remove('hidden');
 } catch (error) {
   console.log(error);
 };
+
 
 function renderSelect(breeds) {
   const markup = breeds
@@ -50,11 +45,15 @@ function renderSelect(breeds) {
 function renderCat(catData) {
   const { url } = catData;
   const { description, name, temperament } = catData.breeds[0];
+  const oldCat = document.getElementById('cat-div');
+  if (typeof(oldCat) != undefined && oldCat != null) {
+    oldCat.remove()
+  };
   catInfo.insertAdjacentHTML(
     'beforeend',
-    `<div>
-        <h2>${name}</h2>
-        <img src="${url}" alt="${name}"/>
+    `<div id="cat-div">
+        <h1>${name}</h1>
+        <img src="${url}" alt="${name}" class="img"/>
         <p>${description}</p>
         <p><strong>Temperament:</strong> ${temperament}</p>
     </div>`

@@ -1,10 +1,8 @@
 import axios from 'axios';
 import Notiflix from 'notiflix';
+axios.defaults.headers.common['x-api-key'] = 'live_MwEb6cOBTopHRDyNUjHlWQNDyUgwDVtKpr05DwKMod1smb0DX1YoCVVEOAt89H8u';
 
 export const fetchBreeds = () => {
-axios.defaults.headers.common['x-api-key'] =
-    'live_MwEb6cOBTopHRDyNUjHlWQNDyUgwDVtKpr05DwKMod1smb0DX1YoCVVEOAt89H8u';
-
     return axios.get(`https://api.thecatapi.com/v1/breeds`)
     .then(res => res.data)
     .catch(e => {

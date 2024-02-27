@@ -7,22 +7,22 @@ const loader = document.querySelector('.loader');
 
 loader.classList.add('hidden');
 
- const fetchBreeds = () => {
-   return axios.get(`https://api.thecatapi.com/v1/breeds`)
-     .then(res => res.data)
-     .catch(e => {
-       Notiflix.Notify.failure('Oops! Something went wrong! Try reloading the page!');
-     });
- };
+const fetchBreeds = () => {
+  return axios.get(`https://api.thecatapi.com/v1/breeds`)
+    .then(res => res.data)
+    .catch(e => {
+      Notiflix.Notify.failure('Oops! Something went wrong! Try reloading the page!');
+    });
+};
 
- const fetchCatByBreed = breedId => {
-   return axios
-     .get(`https://api.thecatapi.com/v1/images/search?breed_ids=${breedId}`)
-     .then(res => res.data)
-     .catch(e => {
-       Notiflix.Notify.failure('Oops! Something went wrong! Try reloading the page!');
-     });
- };
+const fetchCatByBreed = breedId => {
+  return axios
+    .get(`https://api.thecatapi.com/v1/images/search?breed_ids=${breedId}`)
+    .then(res => res.data)
+    .catch(e => {
+      Notiflix.Notify.failure('Oops! Something went wrong! Try reloading the page!');
+    });
+};
 
 try {
   fetchBreeds().then(data => renderSelect(data));

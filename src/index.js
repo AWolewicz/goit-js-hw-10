@@ -9,28 +9,11 @@ const loader = document.querySelector('.loader');
 
 loader.classList.add('hidden');
 
-fetchBreeds = () => {
-  return axios.get(`https://api.thecatapi.com/v1/breeds`)
-    .then(res => res.data)
-    .catch(e => {
-      Notiflix.Notify.failure('Oops! Something went wrong! Try reloading the page!');
-    });
-};
-
-const fetchCatByBreed = breedId => {
-  return axios
-    .get(`https://api.thecatapi.com/v1/images/search?breed_ids=${breedId}`)
-    .then(res => res.data)
-    .catch(e => {
-      Notiflix.Notify.failure('Oops! Something went wrong! Try reloading the page!');
-    });
-};
-
 try {
   fetchBreeds().then(data => renderSelect(data));
   loader.classList.remove('hidden');
 } catch (error) {
-  console.log(error);
+  Notiflix.Notify.failure('Oops! Something went wrong! Try reloading the page!');
 };
 
 
@@ -67,5 +50,5 @@ breedSelect.addEventListener('change', e => {
   loader.classList.remove('hidden');
   fetchCatByBreed(e.target.value)
     .then(data => renderCat(data[0]))
-    .catch(error => console.error(error));
+    .catch(error => Notiflix.Notify.failure('Oops! Something went wrong! Try reloading the page!'));
 });

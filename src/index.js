@@ -9,7 +9,7 @@ const loader = document.querySelector('.loader');
 
 loader.classList.add('hidden');
 
-const fetchBreeds = () => {
+fetchBreeds = () => {
   return axios.get(`https://api.thecatapi.com/v1/breeds`)
     .then(res => res.data)
     .catch(e => {
